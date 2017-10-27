@@ -7,5 +7,6 @@ int main()
 {
     network t;
     t.init();
+    cout << t;
     return 0;
 }

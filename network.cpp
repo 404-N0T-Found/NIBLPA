@@ -31,10 +31,33 @@ void network::init()
             }
             temp.erase(0, pos + delimiter.length());
         }
+        delimiter = "\n";
+        if ((pos = temp.find(delimiter)) != string::npos);
+        {
+            string tmp = temp.substr(0, pos);
+            try
+            {
+                int tmpNum = atoi(tmp.c_str());
+                if (tmpNum >= 1 && tmpNum <= numberOfNodes)
+                    testNetwork[i].addEdge(tmpNum);
+            }
+            catch(exception e)
+            {
+                cout << e.what();
+            }
+            temp.erase(0, pos + delimiter.length());
+        }
     }
 }
 
 network::network()
 {
 
+}
+ostream &operator <<(ostream &output, const network &net)
+{
+    for (int i = 1; i <= net.numberOfNodes; i++)
+        if (!net.testNetwork[i].noEdge())
+            output << net.testNetwork[i] << endl;
+    return output;
 }
