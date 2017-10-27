@@ -2,14 +2,16 @@ QT += core
 QT -= gui
 
 TARGET = test0
-CONFIG += console
+CONFIG += console c++11
 CONFIG -= app_bundle
 
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    node.cpp
+    node.cpp \
+    network.cpp
 
 HEADERS += \
-    node.h
+    node.h \
+    network.h
 
