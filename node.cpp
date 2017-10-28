@@ -6,7 +6,7 @@ void node::addEdge(int i)
         return;
     if (find(connectedTo.begin(), connectedTo.end(), i) != connectedTo.end())
         return;
-    connectedTo[i - 1] = i;
+    connectedTo[i] = i;
     degree++;
 }
 
@@ -18,7 +18,7 @@ node::node()
 node::node(int label, int sizeOfNodes)
 {
     this->label = label;
-    connectedTo = vector<int>(sizeOfNodes, -1);
+    connectedTo = vector<int>(sizeOfNodes + 1, -1);
 }
 
 bool node::noEdge()
