@@ -39,7 +39,10 @@ void network::init()
             {
                 int tmpNum = atoi(tmp.c_str());
                 if (tmpNum >= 1 && tmpNum <= numberOfNodes)
+                {
                     testNetwork[i].addEdge(tmpNum);
+                    testNetwork[tmpNum].addEdge(i);
+                }
             }
             catch(exception e)
             {
