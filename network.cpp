@@ -7,8 +7,9 @@ void network::init()
     testNetwork = new node[numberOfNodes + 1];
     cout << "Enter node labels each node is connected to; Zero if none.\n";
     for (int i = 1; i <= numberOfNodes; i++)
+        testNetwork[i] = node(i, numberOfNodes);
+    for (int i = 1; i <= numberOfNodes; i++)
     {
-        testNetwork[i] = node(i);
         cout << i << ". ";
         string temp;
         if (i == 1)
@@ -23,7 +24,10 @@ void network::init()
             {
                 int tmpNum = atoi(tmp.c_str());
                 if (tmpNum >= 1 && tmpNum <= numberOfNodes)
+                {
                     testNetwork[i].addEdge(tmpNum);
+                    testNetwork[tmpNum].addEdge(i);
+                }
             }
             catch(exception e)
             {
@@ -56,6 +60,11 @@ void network::init()
 network::network()
 {
 
+}
+
+bool network::deleteNetworkEdge()
+{
+    return testNetwork[1].deleteEdge(1);
 }
 ostream &operator <<(ostream &output, const network &net)
 {

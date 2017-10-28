@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <algorithm>
 
 using namespace std;
 
@@ -20,8 +21,9 @@ private:
 public:
     void addEdge(int i);
     node();
-    node(int label);
+    node(int label, int sizeOfNodes);
     bool noEdge();
+    bool deleteEdge(int i);
 };
 
 ostream &operator <<(ostream &output, const node &n);

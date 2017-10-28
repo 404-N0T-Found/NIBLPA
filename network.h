@@ -15,6 +15,7 @@ private:
 public:
     void init();
     network();
+    bool deleteNetworkEdge();
 };
 
 ostream &operator <<(ostream &output, const network &net);
