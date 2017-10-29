@@ -62,10 +62,6 @@ network::network()
 
 }
 
-bool network::deleteNetworkEdge()
-{
-    return testNetwork[1].deleteEdge(1);
-}
 ostream &operator <<(ostream &output, const network &net)
 {
     for (int i = 1; i <= net.numberOfNodes; i++)
