@@ -1,2 +1,2 @@
-# NIBPLA
-Node influence based propagation label algorithm
+# NIBLPA
+Node influence based label propagation algorithm
