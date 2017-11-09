@@ -13,5 +13,6 @@ SOURCES += main.cpp \
 
 HEADERS += \
     node.h \
-    network.h
+    network.h \
+    graphTools.h
 
