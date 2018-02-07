@@ -1,11 +1,11 @@
 #include "node.h"
 
-node::node()
+Node::Node()
 {
-    node(0, 0);
+    Node(0, 0);
 }
 
-node::node(int label)
+Node::Node(int label)
 {
     this->label = label;
 }

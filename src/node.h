@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class node
+class Node
 {
 private:
     int label;
@@ -18,8 +18,8 @@ private:
     int result; // the resulting label after algorithm
 
 public:
-    node();
-    node(int label);
+    Node();
+    Node(int label);
 };
 
 
