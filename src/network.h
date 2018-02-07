@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "node.h"
-
+#include <QFile>
 
 /* reference of the library:
  * https://github.com/meysam81/Sparse-Matrix
@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class network
+class Network
 {
 private:
     Node* testNetwork;
@@ -20,8 +20,8 @@ private:
 
     SparseMatrix<int> *edges;
 public:
-    network(string inputFile, string outputFile = "");
-    void init();
+    Network();
+    bool initialize(string inputPath);
 };
 
 
