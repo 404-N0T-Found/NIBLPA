@@ -2,8 +2,12 @@
 #define NETWORK_H
 
 #include <iostream>
-#include "node.h"
 #include <QFile>
+
+
+#include "node.h"
+class Node; // forward declaration
+
 
 /* reference of the library:
  * https://github.com/meysam81/Sparse-Matrix
