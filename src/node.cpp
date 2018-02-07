@@ -2,7 +2,7 @@
 
 Node::Node()
 {
-    Node(0, 0);
+    Node(0);
 }
 
 Node::Node(int label)
