@@ -7,6 +7,9 @@
 #include <string.h>
 #include <algorithm>
 
+
+#include "network.h"
+
 using namespace std;
 
 class Node
@@ -20,6 +23,8 @@ private:
 public:
     Node();
     Node(int label);
+
+    friend class Network;
 };
 
 
