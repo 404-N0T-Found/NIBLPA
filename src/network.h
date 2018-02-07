@@ -12,7 +12,7 @@ class Node; // forward declaration
 /* reference of the library:
  * https://github.com/meysam81/Sparse-Matrix
  */
-#include "../../Sparse-Matrix/src/SparseMatrix/SparseMatrix.cpp"
+#include "../Sparse-Matrix/src/SparseMatrix/SparseMatrix.cpp"
 
 using namespace std;
 
