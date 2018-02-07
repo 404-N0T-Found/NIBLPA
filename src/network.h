@@ -4,19 +4,25 @@
 #include <iostream>
 #include "node.h"
 
+
+/* reference of the library:
+ * https://github.com/meysam81/Sparse-Matrix
+ */
+#include "../../Sparse-Matrix/src/SparseMatrix/SparseMatrix.cpp"
+
 using namespace std;
 
 class network
 {
-    friend ostream &operator <<(ostream &, const network&);
 private:
-    node* testNetwork;
+    Node* testNetwork;
     int numberOfNodes;
+
+    SparseMatrix<int> *edges;
 public:
+    network(string inputFile, string outputFile = "");
     void init();
-    network();
 };
 
-ostream &operator <<(ostream &output, const network &net);
 
 #endif // NETWORK_H

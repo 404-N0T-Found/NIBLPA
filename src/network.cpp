@@ -1,13 +1,18 @@
 #include "network.h"
 
+network::network(string inputFile, string outputFile = "")
+{
+
+}
+
 void network::init()
 {
     cout << "Enter number of network nodes: ";
     cin >> numberOfNodes;
-    testNetwork = new node[numberOfNodes + 1];
+    testNetwork = new Node[numberOfNodes + 1];
     cout << "Enter node labels each node is connected to; Zero if none.\n";
     for (int i = 1; i <= numberOfNodes; i++)
-        testNetwork[i] = node(i, numberOfNodes);
+        testNetwork[i] = Node(i, numberOfNodes);
     for (int i = 1; i <= numberOfNodes; i++)
     {
         cout << i << ". ";
@@ -55,17 +60,4 @@ void network::init()
             temp.erase(0, pos + delimiter.length());
         }
     }
-}
-
-network::network()
-{
-
-}
-
-ostream &operator <<(ostream &output, const network &net)
-{
-    for (int i = 1; i <= net.numberOfNodes; i++)
-        if (!net.testNetwork[i].noEdge())
-            output << net.testNetwork[i] << endl;
-    return output;
 }
