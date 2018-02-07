@@ -11,21 +11,16 @@ using namespace std;
 
 class node
 {
-    friend ostream &operator <<(ostream &, const node &);
 private:
     int label;
-    int kShell;
-    int degree = 0;
-    int result;
-    vector<int> connectedTo;
+    int kShell; // k-shell decomposition value
+    int degree = 0; // no edges in the beginning
+    int result; // the resulting label after algorithm
+
 public:
-    void addEdge(int i);
     node();
-    node(int label, int sizeOfNodes);
-    bool noEdge();
-    bool deleteEdge(int i);
+    node(int label);
 };
 
-ostream &operator <<(ostream &output, const node &n);
 
 #endif // NODE_H
