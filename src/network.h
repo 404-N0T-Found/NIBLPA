@@ -2,7 +2,7 @@
 #define NETWORK_H
 
 #include <iostream>
-#include <node.h>
+#include "node.h"
 
 using namespace std;
 
