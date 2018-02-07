@@ -12,7 +12,7 @@ SOURCES += main.cpp \
     src/node.cpp
 
 HEADERS += \
-    src/graphTools.h \
     src/network.h \
     src/node.h
 
+QMAKE += core
