@@ -19,13 +19,15 @@ using namespace std;
 class Network
 {
 private:
-    Node* testNetwork;
+    Node* nodes;
     int numberOfNodes;
 
     SparseMatrix<int> *edges;
 public:
     Network();
     bool initialize(string inputPath);
+
+    bool computeKShell();
 };
 
 
