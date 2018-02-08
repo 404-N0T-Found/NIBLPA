@@ -80,11 +80,10 @@ bool Network::initialize(string inputPath)
     }
     catch(exception e)
     {
-        cout << e.what();
+        cerr << e.what();
     }
 
 
-//    cout << numberOfNodes << endl;
 }
 
 bool Network::computeKShell()
@@ -172,8 +171,6 @@ bool Network::computeKShell()
         nodes[i].kShell = copyNode[i].kShell;
 
 
-//    for (int i = 1; i <= numberOfNodes; ++i)
-//        cout << i << setw(15) << nodes[i].kShell << endl;
 
 
     return true;
@@ -196,8 +193,6 @@ bool Network::computeNodeInfluence()
 
     }
 
-//    for (int i = 1; i <= numberOfNodes; ++i)
-//        cout << i << setw(15) << nodes[i].nodeInfluence << endl;
 
 
 
@@ -216,16 +211,12 @@ bool Network::computeLabelInfluence()
         }
     }
 
-//    for (int i = 1; i <= numberOfNodes; ++i)
-//        cout << i << setw(15) << nodes[i].labelInfluence << endl;
 
     return true;
 }
 
-bool Network::computeLabels()
+bool Network::computeNewLabels()
 {
-//    for (int i = 1; i <= numberOfNodes; ++i)
-//        cout << i << setw(15) << nodes[i].nodeInfluence << endl;
     for (int i = 1; i <= numberOfNodes; ++i)
     {
         float maxLi;
@@ -255,8 +246,6 @@ bool Network::computeLabels()
         nodes[i].newLabel = indexMaxLi; // finish
     }
 
-//    for (int i = 1; i <= numberOfNodes; ++i)
-//        cout << i << "\t" << nodes[i].newLabel << endl;
 
     return true;
 }

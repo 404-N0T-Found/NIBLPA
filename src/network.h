@@ -33,7 +33,7 @@ public:
 
     bool computeLabelInfluence();
 
-    bool computeLabels();
+    bool computeNewLabels();
 
 };
 
