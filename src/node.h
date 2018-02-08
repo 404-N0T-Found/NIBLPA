@@ -17,7 +17,7 @@ class Node
 private:
     int label;
     int kShell; // k-shell decomposition value
-    int degree = 0; // no edges in the beginning
+    int degree;
     int result; // the resulting label after algorithm
 
 public:
