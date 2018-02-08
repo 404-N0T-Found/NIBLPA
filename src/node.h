@@ -20,6 +20,7 @@ private:
     int degree;
     float nodeInfluence;
     float labelInfluence;
+    int newLabel;
 
 public:
     Node();

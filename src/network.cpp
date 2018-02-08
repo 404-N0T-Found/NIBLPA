@@ -82,6 +82,9 @@ bool Network::initialize(string inputPath)
     {
         cout << e.what();
     }
+
+
+//    cout << numberOfNodes << endl;
 }
 
 bool Network::computeKShell()
@@ -169,6 +172,10 @@ bool Network::computeKShell()
         nodes[i].kShell = copyNode[i].kShell;
 
 
+//    for (int i = 1; i <= numberOfNodes; ++i)
+//        cout << i << setw(15) << nodes[i].kShell << endl;
+
+
     return true;
 }
 
@@ -189,8 +196,8 @@ bool Network::computeNodeInfluence()
 
     }
 
-    for (int i = 1; i <= numberOfNodes; ++i)
-        cout << nodes[i].nodeInfluence << setw(10);
+//    for (int i = 1; i <= numberOfNodes; ++i)
+//        cout << i << setw(15) << nodes[i].nodeInfluence << endl;
 
 
 
@@ -203,9 +210,53 @@ bool Network::computeLabelInfluence()
     {
         for (int j = 1; j <= numberOfNodes; ++j)
         {
-            if (edges->get(i, j) != 0)
+            if (edges->get(i, j) != 0) // they are neighbors
                 nodes[i].labelInfluence += (float) (nodes[j].nodeInfluence
-                                                    / nodes[j].degree)
+                                                    / nodes[j].degree);
         }
     }
+
+//    for (int i = 1; i <= numberOfNodes; ++i)
+//        cout << i << setw(15) << nodes[i].labelInfluence << endl;
+
+    return true;
+}
+
+bool Network::computeLabels()
+{
+//    for (int i = 1; i <= numberOfNodes; ++i)
+//        cout << i << setw(15) << nodes[i].nodeInfluence << endl;
+    for (int i = 1; i <= numberOfNodes; ++i)
+    {
+        float maxLi;
+        int j, indexMaxLi;
+        for (j = 1; j <= numberOfNodes; ++j)
+        {
+            if (edges->get(i, j) != 0)
+            {
+                maxLi = nodes[j].labelInfluence;
+                indexMaxLi = j;
+                break;
+            }
+        }
+        for (; j < numberOfNodes; ++j)
+        {
+            if (edges->get(i, j) != 0)
+            {
+                if (nodes[j].nodeInfluence > maxLi)
+                {
+                    maxLi = nodes[i].labelInfluence;
+                    indexMaxLi = j;
+                }
+
+            }
+        }
+
+        nodes[i].newLabel = indexMaxLi; // finish
+    }
+
+//    for (int i = 1; i <= numberOfNodes; ++i)
+//        cout << i << "\t" << nodes[i].newLabel << endl;
+
+    return true;
 }

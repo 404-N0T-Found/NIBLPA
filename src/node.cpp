@@ -11,4 +11,5 @@ Node::Node(int label)
     this->kShell = 0;
     this->degree = 0; // no edges in the beginning
     labelInfluence = 0;
+    newLabel = 0;
 }
