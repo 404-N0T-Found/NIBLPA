@@ -178,21 +178,34 @@ bool Network::computeNodeInfluence()
     float alpha = (float) rand() / RAND_MAX;
     for (int i = 1; i <= numberOfNodes; ++i)
     {
-        nodes[i].result = nodes[i].kShell; // NI(i) = Ks(i) + ...
+        nodes[i].nodeInfluence = nodes[i].kShell; // NI(i) = Ks(i) + ...
 
         float tmpSum = 0;
         for (int i = 1; i <= numberOfNodes; ++i)
             tmpSum += (float) (nodes[i].kShell / nodes[i].degree);
         tmpSum *= alpha;
 
-        nodes[i].result += tmpSum;
+        nodes[i].nodeInfluence += tmpSum;
 
     }
 
     for (int i = 1; i <= numberOfNodes; ++i)
-        cout << nodes[i].result << setw(10);
+        cout << nodes[i].nodeInfluence << setw(10);
 
 
 
     return true;
+}
+
+bool Network::computeLabelInfluence()
+{
+    for (int i = 1; i <= numberOfNodes; ++i)
+    {
+        for (int j = 1; j <= numberOfNodes; ++j)
+        {
+            if (edges->get(i, j) != 0)
+                nodes[i].labelInfluence += (float) (nodes[j].nodeInfluence
+                                                    / nodes[j].degree)
+        }
+    }
 }
