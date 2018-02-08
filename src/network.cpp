@@ -41,7 +41,7 @@ bool Network::initialize(string inputPath)
 
 
         // node labels start from zero so we should initializr from 1 to n
-        edges = new SparseMatrix<int>(numberOfNodes + 1);
+        edges = new SparseMatrix<int>(numberOfNodes);
 
         nodes = new Node[numberOfNodes + 1];
         for (int i = 1; i <= numberOfNodes; ++i)
@@ -73,6 +73,8 @@ bool Network::initialize(string inputPath)
 
         }
 
+
+
         // close the reading file
         inputFile.close();
     }
@@ -85,20 +87,25 @@ bool Network::initialize(string inputPath)
 bool Network::computeKShell()
 {
     // to edit the degree
-    Node *copyNodes = new Node(*nodes);
+    Node copyNode[numberOfNodes + 1];
+    for (int i = 1; i <= numberOfNodes; ++i)
+        copyNode[i] = nodes[i];
 
 
 
     /* to edit (remove) the edges as a process
      * of computing the k-shell decomposition
      */
-    SparseMatrix<int> copyEdges = (*edges);
+    SparseMatrix<int> copyEdges(*edges);
 
 
 
     int currentK = 1;
 
     bool endLoop;
+
+
+
 
     do
     {
@@ -111,22 +118,32 @@ bool Network::computeKShell()
         {
 
 
-#if endLoop == true
             // calculate this function ONCE
-            if (nodes[cntr].degree != 0)
+            if (copyNode[cntr].degree != 0)
                 endLoop = false;
-#endif
+            else // skip nodes with zero degree
+                continue;
 
 
-            if (nodes[cntr].degree == currentK)
-                if (edges->removeAnEdge(cntr))
+            if (copyNode[cntr].degree == currentK)
+            {
+                int column;
+                if (copyEdges.removeAnyEdge(cntr, column))
                 {
-                    nodes->degree--;
-                    nodes->kShell++;
-
+                    copyNode[cntr].degree--;
+                    copyNode[cntr].kShell++;
 
                     goToNextK = false;
                 }
+
+                // remove the correspondent indirected edge as well
+                if (copyEdges.removeEdge(column, cntr))
+                {
+                    copyNode[column].degree--;
+                    copyNode[column].kShell++;
+
+                }
+            }
         }
 
 
@@ -134,18 +151,20 @@ bool Network::computeKShell()
             currentK++;
 
 
-    }while (!endLoop);
+    }while (!endLoop && currentK <= numberOfNodes);
 
 
     // add the nodes with zero k-shell to the minimum shell
-    int minKShell = nodes[1].kShell;
+    int minKShell = copyNode[1].kShell;
     for (int i = 2; i <= numberOfNodes; ++i) // compute the minimum
-        if (minKShell > nodes[i].kShell)
-            minKShell = nodes[i].kShell;
+        if (minKShell > copyNode[i].kShell)
+            minKShell = copyNode[i].kShell;
 
     for (int i = 1; i <= numberOfNodes; ++i) // assign the minimum
-        if (nodes[i].kShell == 0)
-            nodes[i].kShell = minKShell;
+        if (copyNode[i].kShell == 0)
+            copyNode[i].kShell = minKShell;
 
 
+
+    return true;
 }
