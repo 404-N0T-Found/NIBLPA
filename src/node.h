@@ -18,7 +18,7 @@ private:
     int label;
     int kShell; // k-shell decomposition value
     int degree;
-    int result; // the resulting label after algorithm
+    float result; // the resulting label after algorithm
 
 public:
     Node();
