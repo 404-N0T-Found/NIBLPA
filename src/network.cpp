@@ -165,6 +165,34 @@ bool Network::computeKShell()
             copyNode[i].kShell = minKShell;
 
 
+    for (int i = 1; i <= numberOfNodes; ++i) // assign the copy back to origin
+        nodes[i].kShell = copyNode[i].kShell;
+
+
+    return true;
+}
+
+bool Network::computeNodeInfluence()
+{
+    srand(QTime::currentTime().second());
+    float alpha = (float) rand() / RAND_MAX;
+    for (int i = 1; i <= numberOfNodes; ++i)
+    {
+        nodes[i].result = nodes[i].kShell; // NI(i) = Ks(i) + ...
+
+        float tmpSum = 0;
+        for (int i = 1; i <= numberOfNodes; ++i)
+            tmpSum += (float) (nodes[i].kShell / nodes[i].degree);
+        tmpSum *= alpha;
+
+        nodes[i].result += tmpSum;
+
+    }
+
+    for (int i = 1; i <= numberOfNodes; ++i)
+        cout << nodes[i].result << setw(10);
+
+
 
     return true;
 }

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <QFile>
 #include <iomanip>
-
+#include <QTime>
 #include "node.h"
 class Node; // forward declaration
 
@@ -28,6 +28,9 @@ public:
     bool initialize(string inputPath);
 
     bool computeKShell();
+
+    bool computeNodeInfluence();
+
 };
 
 
