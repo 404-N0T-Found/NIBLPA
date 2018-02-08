@@ -8,4 +8,6 @@ Node::Node()
 Node::Node(int label)
 {
     this->label = label;
+    this->kShell = 0;
+    this->degree = 0; // no edges in the beginning
 }
