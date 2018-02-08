@@ -80,7 +80,7 @@ bool Network::initialize(string inputPath)
     }
     catch(exception e)
     {
-        cerr << e.what();
+        cerr << e.what() << endl;
     }
 
 
@@ -230,7 +230,7 @@ bool Network::computeNewLabels()
                 break;
             }
         }
-        for (; j < numberOfNodes; ++j)
+        for (; j <= numberOfNodes; ++j)
         {
             if (edges->get(i, j) != 0)
             {
@@ -248,4 +248,23 @@ bool Network::computeNewLabels()
 
 
     return true;
+}
+
+bool Network::writeResultsToFile(string resultPath)
+{
+    fstream output;
+    try
+    {
+        output.open(resultPath, ios::app);
+        for (int i = 1; i <= numberOfNodes; i++)
+            output << i << "\t" << nodes[i].newLabel << endl;
+        output.flush();
+        output.close();
+        return true;
+    }
+    catch (exception ex)
+    {
+        cerr << ex.what() << endl;
+    }
+
 }

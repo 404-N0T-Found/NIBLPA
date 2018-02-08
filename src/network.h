@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <QTime>
 #include "node.h"
+#include <fstream>
 class Node; // forward declaration
 
 
@@ -34,6 +35,8 @@ public:
     bool computeLabelInfluence();
 
     bool computeNewLabels();
+
+    bool writeResultsToFile(string resultPath);
 
 };
 
